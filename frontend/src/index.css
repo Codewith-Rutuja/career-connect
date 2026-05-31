@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  :root.dark {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-slate-200 dark:border-slate-800;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-shell font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50;
+  }
+
+  ::selection {
+    @apply bg-brand-300/70 text-slate-900;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-panel {
+    @apply rounded-[28px] border border-white/60 bg-white/70 shadow-soft backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/70;
+  }
+
+  .gradient-ring {
+    background:
+      linear-gradient(#fff, #fff) padding-box,
+      linear-gradient(135deg, rgba(45,151,137,0.65), rgba(56,189,248,0.4), rgba(15,23,42,0.16)) border-box;
+    border: 1px solid transparent;
+  }
+
+  .dark .gradient-ring {
+    background:
+      linear-gradient(rgba(15,23,42,0.95), rgba(15,23,42,0.95)) padding-box,
+      linear-gradient(135deg, rgba(45,151,137,0.7), rgba(56,189,248,0.46), rgba(255,255,255,0.16)) border-box;
+  }
+}
+
+.mesh-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
