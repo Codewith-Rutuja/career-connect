@@ -15,16 +15,23 @@ function LoginPage() {
   const onChange = (event) =>
     setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const submitLogin = async (credentials) => {
     setLoading(true);
 
     try {
-      await login(formData);
+      await login({
+        ...credentials,
+        email: credentials.email.trim(),
+      });
       navigate(location.state?.from || "/dashboard");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await submitLogin(formData);
   };
 
   return (
@@ -51,6 +58,24 @@ function LoginPage() {
               <Link to="/forgot-password" className="font-semibold text-brand-600 hover:underline dark:text-brand-300">Forgot password?</Link>
             </div>
             <Button type="submit" loading={loading} className="w-full">Continue to dashboard</Button>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={loading}
+                onClick={() => submitLogin({ email: "student@test.com", password: "123456" })}
+              >
+                Student demo
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={loading}
+                onClick={() => submitLogin({ email: "employer@test.com", password: "123456" })}
+              >
+                Employer demo
+              </Button>
+            </div>
           </form>
           <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
             New to CareerConnect?{" "}
