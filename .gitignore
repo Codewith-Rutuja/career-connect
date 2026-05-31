@@ -26,3 +26,6 @@ Thumbs.db
 
 # Production
 /.pnp/
+# Runtime logs
+*.err.log
+*.out.log
